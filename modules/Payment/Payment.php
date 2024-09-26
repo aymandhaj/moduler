@@ -1,7 +1,7 @@
 <?php
 namespace Modules\Payment;
 use App\Models\User;
-use Modules\Order\Models\Order;
+use Modules\Order\Order;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Payment extends Model

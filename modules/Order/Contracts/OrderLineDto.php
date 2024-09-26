@@ -1,7 +1,7 @@
 <?php
-namespace Modules\Order\DTOs;
+namespace Modules\Order\Contracts;
+use Modules\Order\OrderLine;
 use Illuminate\Support\Collection;
-use Modules\Order\Models\OrderLine;
 class OrderLineDto
 {
     public function __construct(

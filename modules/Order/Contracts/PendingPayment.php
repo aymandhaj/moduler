@@ -1,6 +1,5 @@
 <?php
-namespace Modules\Order\DTOs;
-use Modules\Payment\PayBuddySdk;
+namespace Modules\Order\Contracts;
 use Modules\Payment\PaymentGateway;
 readonly  class PendingPayment
 {

@@ -1,16 +1,13 @@
 <?php
 namespace Http\Controllers;
 use Tests\TestCase;
-use Modules\Payment\Payment;
+use Modules\Order\Order;
 use Modules\Payment\PayBuddySdk;
-use Modules\Order\Models\Order;
 use Database\Factories\UserFactory;
-use Modules\Order\Models\OrderLine;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Modules\Payment\PaymentProvider;
-use Modules\Order\Mail\OrderReceived;
 use PHPUnit\Framework\Attributes\Test;
+use Modules\Order\Checkout\OrderReceived;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Modules\Product\Database\factories\ProductFactory;

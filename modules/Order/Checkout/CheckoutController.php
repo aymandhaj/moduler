@@ -1,13 +1,11 @@
 <?php
-namespace Modules\Order\Http\Controllers;
+namespace Modules\Order\Checkout;
 use Modules\User\UserDTo;
 use Modules\Payment\PaymentGateway;
 use App\Http\Controllers\Controller;
-use Modules\Order\DTOs\PendingPayment;
 use Modules\Product\CartItemCollection;
-use Modules\Order\Actions\PurchaseItems;
+use Modules\Order\Contracts\PendingPayment;
 use Illuminate\Validation\ValidationException;
-use Modules\Order\Http\Requests\CheckoutRequest;
 use Modules\Payment\Exceptions\PaymentFailedException;
 class CheckoutController extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 namespace Modules\Product\Events;
-use Modules\Order\Events\OrderFulFilled;
+use Modules\Order\Checkout\OrderFulFilled;
 use Modules\Product\Warehouse\ProductStockManager;
 class DecreaseProductStock
 {

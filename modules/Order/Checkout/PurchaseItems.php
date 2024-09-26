@@ -1,13 +1,12 @@
 <?php
-namespace Modules\Order\Actions;
+namespace Modules\Order\Checkout;
+use Modules\Order\Order;
 use Modules\User\UserDTo;
-use Modules\Order\Models\Order;
-use Modules\Order\DTOs\OrderDto;
 use Illuminate\Events\Dispatcher;
-use Modules\Order\DTOs\PendingPayment;
+use Modules\Order\Contracts\OrderDto;
 use Modules\Product\CartItemCollection;
 use Illuminate\Database\DatabaseManager;
-use Modules\Order\Events\OrderFulFilled;
+use Modules\Order\Contracts\PendingPayment;
 use Modules\Product\Warehouse\ProductStockManager;
 use Modules\Payment\Actions\CreatePaymentForOrder;
 class PurchaseItems

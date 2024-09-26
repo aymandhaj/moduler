@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Order\ViewComponents;
+namespace Modules\Order\Ui\ViewComponents;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 class Alert extends Component

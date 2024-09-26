@@ -1,13 +1,12 @@
 <?php
 
-namespace Modules\Order\Mail;
+namespace Modules\Order\Checkout;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
-
 class OrderReceived extends Mailable
 {
     use Queueable , SerializesModels;

@@ -1,8 +1,8 @@
 <?php
-namespace Modules\Order\Models;
+namespace Modules\Order;
+use NumberFormatter;
 use Modules\Product\Models\Product;
 use Illuminate\Database\Eloquent\Model;
-use NumberFormatter;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  *

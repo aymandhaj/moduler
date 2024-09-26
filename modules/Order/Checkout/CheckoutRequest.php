@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Order\Http\Requests;
+namespace Modules\Order\Checkout;
 use Illuminate\Foundation\Http\FormRequest;
 class CheckoutRequest extends FormRequest
 {

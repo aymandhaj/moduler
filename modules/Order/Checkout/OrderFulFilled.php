@@ -1,9 +1,7 @@
 <?php
-namespace Modules\Order\Events;
+namespace Modules\Order\Checkout;
 use Modules\User\UserDTo;
-use Modules\Order\DTOs\OrderDto;
-use Modules\Order\DTOs\OrderLineDto;
-use Modules\Product\CartItemCollection;
+use Modules\Order\Contracts\OrderDto;
 readonly class OrderFulFilled
 {
 

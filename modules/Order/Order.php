@@ -1,6 +1,7 @@
 <?php
-namespace Modules\Order\Models;
+namespace Modules\Order;
 use App\Models\User;
+use NumberFormatter;
 use Modules\Payment\Payment;
 use Modules\Product\CartItem;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use NumberFormatter;
+use Modules\Order\Models\OrderMissingOrderLinesException;
 class Order extends Model
 {
     use HasFactory;

@@ -1,6 +1,6 @@
 <?php
-namespace Modules\Order\DTOs;
-use Modules\Order\Models\Order;
+namespace Modules\Order\Contracts;
+use Modules\Order\Order;
 readonly class OrderDto
 {
     /**

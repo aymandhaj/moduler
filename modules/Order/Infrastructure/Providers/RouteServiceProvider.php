@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Order\Providers;
+namespace Modules\Order\infrastructure\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as BaseRouteServiceProvider;
@@ -18,7 +18,7 @@ class RouteServiceProvider extends BaseRouteServiceProvider
             Route::middleware('web')
                 ->as('order::')
 
-                ->group(__DIR__ . '/../routes/web.php');
+                ->group(__DIR__ . '/../../Ui/routes/web.php');
         });
 
     }

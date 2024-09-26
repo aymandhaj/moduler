@@ -1,10 +1,10 @@
 <?php
-namespace Modules\Order\Providers;
+namespace Modules\Order\infrastructure\Providers;
 class EventServiceProvider extends \Illuminate\Foundation\Support\Providers\EventServiceProvider
 {
     protected $listen = [
-        \Modules\Order\Events\OrderFulFilled::class => [
-            \Modules\Order\Events\SendOrderConfirmationMail::class,
+        \Modules\Order\Checkout\OrderFulFilled::class => [
+            \Modules\Order\Checkout\SendOrderConfirmationMail::class,
         ],
     ];
     public function shouldDiscoverEvents(): bool

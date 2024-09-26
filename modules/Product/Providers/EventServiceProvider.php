@@ -3,7 +3,7 @@ namespace Modules\Product\Providers;
 class EventServiceProvider extends \Illuminate\Foundation\Support\Providers\EventServiceProvider
 {
     protected $listen = [
-        \Modules\Order\Events\OrderFulFilled::class => [
+        \Modules\Order\Checkout\OrderFulFilled::class => [
             \Modules\Product\Events\DecreaseProductStock::class,
         ],
     ];
