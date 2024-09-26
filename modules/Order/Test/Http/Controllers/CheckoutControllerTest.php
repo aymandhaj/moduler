@@ -7,6 +7,8 @@ use Modules\Order\Models\Order;
 use Database\Factories\UserFactory;
 use Modules\Order\Models\OrderLine;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use Modules\Order\Mail\OrderReceived;
 use PHPUnit\Framework\Attributes\Test;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -17,6 +19,7 @@ class CheckoutControllerTest extends TestCase
     #[Test]
     public function it_successfully_creates_an_order(): void
     {
+        Mail::fake();
         $user = UserFactory::new()->create();
         $products = ProductFactory::new()->count(2)->create(
             new Sequence([
@@ -31,7 +34,6 @@ class CheckoutControllerTest extends TestCase
                 ])
         );
         $paymentToken = PayBuddy::validToken();
-        Log::info(3333434343);
         $response = $this->actingAs($user)
             ->post(route('order::checkout') , [
                 'payment_token' => $paymentToken ,
@@ -48,6 +50,9 @@ class CheckoutControllerTest extends TestCase
             ])
             ->assertStatus(201);
 
+        Mail::assertSent(OrderReceived::class,function(OrderReceived $mail) use ($user){
+            return $mail->hasTo($user->email);
+        });
 
         // order
 

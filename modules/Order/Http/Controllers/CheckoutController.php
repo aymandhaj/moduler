@@ -1,9 +1,9 @@
 <?php
 namespace Modules\Order\Http\Controllers;
-use RuntimeException;
+use Modules\User\UserDTo;
 use Modules\Payment\PayBuddy;
-use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use Modules\Order\DTOs\PendingPayment;
 use Modules\Product\CartItemCollection;
 use Modules\Order\Actions\PurchaseItems;
 use Illuminate\Validation\ValidationException;
@@ -18,19 +18,21 @@ class CheckoutController extends Controller
     public function __invoke(CheckoutRequest $request)
     {
         $cartItems = CartItemCollection::fromCheckoutData($request->input('products'));
+        $pendingPayment = new PendingPayment(PayBuddy::make() , $request->input('payment_token'));
+        $userDto = UserDTo::fromEloquentModel($request->user());
         try {
             $order = $this->purchaseItems->handle(
-                items          : $cartItems ,
-                paymentProvider: PayBuddy::make() ,
-                paymentToken   : $request->input('payment_token') ,
-                userId         : $request->user()->id);
+                items         : $cartItems ,
+                pendingPayment: $pendingPayment ,
+                user          : $userDto ,
+            );
         } catch (PaymentFailedException) {
             throw  ValidationException::withMessages(
                 ['payment_token' => 'we could not complete your payment , please try again.']
             );
         }
         return response()->json([
-            'order_url' => $order->url() ,
+            'order_url' => $order->url ,
         ] , 201);
 
 
