@@ -22,7 +22,7 @@ class OrderServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(EventServiceProvider::class);
-        $this->loadViewsFrom(__DIR__.'/../Ui/Views','order');
+        $this->loadViewsFrom(__DIR__.'/../../Ui/Views','order');
         Blade::anonymousComponentPath(__DIR__.'/../Ui/Views/Components','order');
         Blade::componentNamespace('Modules\\Order\\Ui\\ViewComponents', 'order');
 

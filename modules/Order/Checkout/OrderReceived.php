@@ -1,9 +1,8 @@
 <?php
-
 namespace Modules\Order\Checkout;
-
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Modules\Order\Contracts\OrderDto;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
@@ -14,7 +13,7 @@ class OrderReceived extends Mailable
      * Create a new message instance.
      */
     public function __construct(
-//        public OrderDto $order
+        public OrderDto $order
     )
     {
     }
