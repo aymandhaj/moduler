@@ -32,7 +32,7 @@ class PurchaseItems
                 orderId     : $order->id ,
                 userId      : $user->id ,
                 totalInCents: $items->totalInCents() ,
-                payBuddy    : $pendingPayment->paymentProvider ,
+                paymentGateway    : $pendingPayment->paymentProvider ,
                 paymentToken: $pendingPayment->paymentToken
             );
             return OrderDto::fromEloquentModel($order) ;

@@ -2,12 +2,13 @@
 namespace Http\Controllers;
 use Tests\TestCase;
 use Modules\Payment\Payment;
-use Modules\Payment\PayBuddy;
+use Modules\Payment\PayBuddySdk;
 use Modules\Order\Models\Order;
 use Database\Factories\UserFactory;
 use Modules\Order\Models\OrderLine;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Modules\Payment\PaymentProvider;
 use Modules\Order\Mail\OrderReceived;
 use PHPUnit\Framework\Attributes\Test;
 use Illuminate\Database\Eloquent\Factories\Sequence;
@@ -20,6 +21,7 @@ class CheckoutControllerTest extends TestCase
     public function it_successfully_creates_an_order(): void
     {
         Mail::fake();
+        $this->withoutExceptionHandling();
         $user = UserFactory::new()->create();
         $products = ProductFactory::new()->count(2)->create(
             new Sequence([
@@ -33,7 +35,7 @@ class CheckoutControllerTest extends TestCase
                     'stock' => 10
                 ])
         );
-        $paymentToken = PayBuddy::validToken();
+        $paymentToken = PayBuddySdk::validToken();
         $response = $this->actingAs($user)
             ->post(route('order::checkout') , [
                 'payment_token' => $paymentToken ,
@@ -64,7 +66,7 @@ class CheckoutControllerTest extends TestCase
 
         $this->assertTrue($order->user->is($user));
         $this->assertEquals('paid' , $payment->status);
-        $this->assertEquals('PayBuddy' , $payment->payment_gateway);
+        $this->assertEquals(PaymentProvider::PayBuddy , $payment->payment_gateway);
 //        $this->assertEquals(36, $payment->payment_id);
         $this->assertEquals(60000 , $payment->total_in_cents);
         $this->assertTrue($payment->user->is($user));
@@ -86,7 +88,7 @@ class CheckoutControllerTest extends TestCase
     {
         $user = UserFactory::new()->create();
         $products = ProductFactory::new()->count(2)->create();
-        $paymentToken = PayBuddy::invalidToken();
+        $paymentToken = PayBuddySdk::invalidToken();
         $response = $this->actingAs($user)
             ->postJson(route('order::checkout') , [
                 'payment_token' => $paymentToken ,

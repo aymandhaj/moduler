@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Order\Exceptions;
+namespace Modules\Payment\Exceptions;
 class PaymentFailedException extends \RuntimeException
 {
     public static function dueInvalidToken() :PaymentFailedException

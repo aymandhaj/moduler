@@ -2,7 +2,7 @@
 namespace Modules\Payment;
 use NumberFormatter;
 use Illuminate\Support\Str;
-class PayBuddy
+class PayBuddySdk
 {
     public function charge(string $token, int $amountInCents, string $statementDescription): array
     {
@@ -19,7 +19,7 @@ class PayBuddy
         ];
     }
 
-    public static function make(): PayBuddy
+    public static function make(): PayBuddySdk
     {
         return new self();
     }

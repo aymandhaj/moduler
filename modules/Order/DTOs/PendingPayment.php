@@ -1,11 +1,12 @@
 <?php
 namespace Modules\Order\DTOs;
-use Modules\Payment\PayBuddy;
+use Modules\Payment\PayBuddySdk;
+use Modules\Payment\PaymentGateway;
 readonly  class PendingPayment
 {
 	public function __construct(
-        public PayBuddy $paymentProvider,
-        public string $paymentToken
+        public PaymentGateway $paymentProvider,
+        public string      $paymentToken
 
     )
 	{
